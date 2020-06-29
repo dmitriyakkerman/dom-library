@@ -1,7 +1,6 @@
 class DomUtil {
-    constructor(selector, className) {
+    constructor(selector) {
         this.selector = document.querySelector(selector);
-        this.className = className;
     }
 
     html(html) {
