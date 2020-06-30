@@ -1,122 +1,137 @@
-class DomUtil {
-    constructor(selector) {
-        this.selector = document.querySelector(selector);
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        module.exports = factory();
+    } else {
+        root.Dom = factory();
     }
+}(typeof self !== 'undefined' ? self : this, function () {
 
-    html(html) {
-        this.selector.innerHTML = html;
-
-        return this;
-    }
-
-    clear() {
-        this.html('')
-    }
-
-    text(text) {
-        this.selector.textContent = text;
-
-        return this;
-    }
-
-    addClass(className) {
-        this.selector.classList.add(className);
-
-        return this;
-    }
-
-    removeClass(className) {
-        this.selector.classList.remove(className);
-
-        return this;
-    }
-
-    toggleClass(className) {
-        if(this.selector.classList.contains(className)) {
-            this.selector.classList.remove(className)
-        }
-        else {
-            this.selector.classList.add(className)
+    class DomUtil {
+        constructor(selector) {
+            this.selector = document.querySelector(selector);
         }
 
-        return this;
+        html(html) {
+            this.selector.innerHTML = html;
+
+            return this;
+        }
+
+        clear() {
+            this.html('')
+        }
+
+        text(text) {
+            this.selector.textContent = text;
+
+            return this;
+        }
+
+        addClass(className) {
+            this.selector.classList.add(className);
+
+            return this;
+        }
+
+        removeClass(className) {
+            this.selector.classList.remove(className);
+
+            return this;
+        }
+
+        toggleClass(className) {
+            if(this.selector.classList.contains(className)) {
+                this.selector.classList.remove(className)
+            }
+            else {
+                this.selector.classList.add(className)
+            }
+
+            return this;
+        }
+
+        attr(attrName, attrValue) {
+            if(!attrValue) {
+                return this.selector.getAttribute('data-' + attrName);
+            }
+            else {
+                return this.selector.setAttribute('data-' + attrName, attrValue);
+            }
+        };
+
+        remove() {
+            this.selector.remove();
+
+            return this;
+        }
+
+        prepend(element) {
+            this.selector.prepend(element);
+
+            return this;
+        }
+
+        append(element) {
+            this.selector.append(element);
+
+            return this;
+        }
+
+        previous() {
+            return this.selector.previousElementSibling
+        }
+
+        next() {
+            return this.selector.nextElementSibling
+        }
+
+        parent() {
+            return this.selector.parentElement
+        }
+
+        firstChild() {
+            return this.selector.firstElementChild
+        }
+
+        lastChild() {
+            return this.selector.lastElementChild
+        }
+
+        on(eventType, callback) {
+            this.selector.addEventListener(eventType, callback)
+        }
+
     }
 
-    attr(attrName, attrValue) {
-        if(!attrValue) {
-            return this.selector.getAttribute('data-' + attrName);
-        }
-        else {
-            return this.selector.setAttribute('data-' + attrName, attrValue);
-        }
+    function Dom(selector) {
+        return new DomUtil(selector)
     };
 
-    remove() {
-        this.selector.remove();
+    Dom.create = function(tagName, className) {
+        let element = document.createElement(tagName);
 
-        return this;
-    }
+        if(className) {
+            element.classList.add(className)
+        }
 
-    prepend(element) {
-        this.selector.prepend(element);
+        return element;
+    };
 
-        return this;
-    }
+    Dom.find = function(selector) {
+        let element = document.querySelector(selector);
 
-    append(element) {
-        this.selector.append(element);
+        return element;
+    };
 
-        return this;
-    }
+    Dom.findAll = function(selectors) {
+        let elements = document.querySelectorAll(selectors);
 
-    previous() {
-        return this.selector.previousElementSibling
-    }
+        return elements;
+    };
 
-    next() {
-        return this.selector.nextElementSibling
-    }
 
-    parent() {
-        return this.selector.parentElement
-    }
+    return Dom;
 
-    firstChild() {
-        return this.selector.firstElementChild
-    }
-
-    lastChild() {
-        return this.selector.lastElementChild
-    }
-
-    on(eventType, callback) {
-        this.selector.addEventListener(eventType, callback)
-    }
-
-}
-
-export function Dom(selector) {
-    return new DomUtil(selector)
-};
-
-Dom.create = function(tagName, className) {
-    let element = document.createElement(tagName);
-
-    if(className) {
-        element.classList.add(className)
-    }
-
-    return element;
-};
-
-Dom.find = function(selector) {
-    let element = document.querySelector(selector);
-
-    return element;
-};
-
-Dom.findAll = function(selectors) {
-    let elements = document.querySelectorAll(selectors);
-
-    return elements;
-};
+}));
