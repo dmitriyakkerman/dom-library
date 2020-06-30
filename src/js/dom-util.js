@@ -95,8 +95,8 @@ class DomUtil {
 
 }
 
-export function Dom(selector, className) {
-    return new DomUtil(selector, className)
+export function Dom(selector) {
+    return new DomUtil(selector)
 };
 
 Dom.create = function(tagName, className) {
