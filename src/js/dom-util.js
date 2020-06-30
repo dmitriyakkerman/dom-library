@@ -102,14 +102,13 @@
     on(eventType, callback) {
       this.selector.addEventListener(eventType, callback);
     }
-
   }
 
-  function Dom(selector) {
+  function $d(selector) {
     return new DomUtil(selector);
   }
 
-  Dom.create = function (tagName, className) {
+  $d.create = function (tagName, className) {
     const element = document.createElement(tagName);
 
     if (className) {
@@ -119,17 +118,17 @@
     return element;
   };
 
-  Dom.find = function (selector) {
+  $d.find = function (selector) {
     const element = document.querySelector(selector);
 
     return element;
   };
 
-  Dom.findAll = function (selectors) {
+  $d.findAll = function (selectors) {
     const elements = document.querySelectorAll(selectors);
 
     return elements;
   };
 
-  return Dom;
+  return $d;
 }));
