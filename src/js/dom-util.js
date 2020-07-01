@@ -14,7 +14,7 @@
     }
 
     html(html) {
-      this.selector.innerHTML = html;
+      this.selector.innerHTML = html
 
       return this;
     }
