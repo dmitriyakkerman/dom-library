@@ -11,14 +11,14 @@ module.exports = {
     filename: '[name].min.js'
   },
   module: {
-      rules: [
-          {
-              test: /\.js$/,
-              loader: 'babel-loader',
-              query: {
-                  presets: ['@babel/preset-env', "airbnb"]
-              }
-          }
-      ]
+    rules: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['@babel/preset-env']
+        }
+      }
+    ]
   },
 };
