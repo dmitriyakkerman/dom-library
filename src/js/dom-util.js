@@ -14,7 +14,7 @@
     }
 
     html(html) {
-      this.selector.innerHTML = html
+      this.selector.innerHTML = html;
 
       return this;
     }
@@ -50,6 +50,15 @@
       }
 
       return this;
+    }
+
+    hasClass(className) {
+      if (this.selector.classList.contains(className)) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     attr(attrName, attrValue) {
@@ -129,6 +138,8 @@
 
     return elements;
   };
+
+  window.$d = $d;
 
   return $d;
 }));
