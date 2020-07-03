@@ -40,13 +40,18 @@ describe('$d testing', () => {
     expect(element.hasClass('someClass')).toBeTruthy();
   });
 
-  test('Element with class "new" should return value of attribute "title"', () => {
+  test('Element with class "element" should return value of attribute "title"', () => {
     expect($d('.element').attr('title')).toBe('some');
   });
 
-  test('Element with class "new" should set new value of attribute "title"', () => {
+  test('Element with class "element" should set new value of attribute "title"', () => {
     $d('.element').attr('title', 'newValue');
     expect($d('.element').attr('title')).toBe('newValue');
+  })
+
+  test('Length of elements with class "element" should be equal 0 after removing', () => {
+    $d('.element').remove();
+    expect($d('.element').length).toBe(0);
   })
 
 })
