@@ -4,7 +4,7 @@ let webpack = require('webpack');
 module.exports = {
   watch: true,
   entry: {
-    'dom-util': './src/js/dom-util.js'
+    'dom-util': './src/js/dom.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist/js'),
