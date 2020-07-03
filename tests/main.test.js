@@ -46,7 +46,6 @@ describe('$d testing', () => {
 
   test('Element with class "new" should set new value of attribute "title"', () => {
     $d('.element').attr('title', 'newValue');
-
     expect($d('.element').attr('title')).toBe('newValue');
   })
 
