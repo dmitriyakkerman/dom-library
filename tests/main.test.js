@@ -4,9 +4,9 @@ describe('$d testing', () => {
 
   document.body.innerHTML = `
     <div id="someId"></div>
-
     <div class="box"></div>
     <div class="box"></div>
+    <div class="element" title="some"></div>
   `;
 
   test('$d should be defined', () => {
@@ -33,10 +33,21 @@ describe('$d testing', () => {
   test('Elements with class "box" should have empty classes after implementing "removeClass" method', () => {
     let boxes = $d('.box').removeClass('box');
     expect((boxes).hasClass('box')).toBeFalsy();
-  })
+  });
 
   test('Element with id "someId" should have additional class "someClass" after implementing "toggleClass" method', () => {
     let element = $d('#someId').toggleClass('someClass');
     expect(element.hasClass('someClass')).toBeTruthy();
+  });
+
+  test('Element with class "new" should return value of attribute "title"', () => {
+    expect($d('.element').attr('title')).toBe('some');
+  });
+
+  test('Element with class "new" should set new value of attribute "title"', () => {
+    $d('.element').attr('title', 'newValue');
+
+    expect($d('.element').attr('title')).toBe('newValue');
   })
+
 })
