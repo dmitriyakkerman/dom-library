@@ -18,5 +18,5 @@ Usage:
         
     Chaining
         
-    $d(".box").html('<div>Today is a good day</div>').text('Could be better').addClass('my-class').removeClass('my-class');    
+    $d(".box").html('<div>Today is a good day</div>').text('Could be better').addClass('my-class').removeClass('my-class').toggleClass('new-class').remove();    
     
