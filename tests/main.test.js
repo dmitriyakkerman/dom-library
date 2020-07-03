@@ -1,4 +1,4 @@
-const $d = require('../src/js/dom-util');
+const $d = require('../src/js/dom');
 
 describe('$d testing', () => {
 
