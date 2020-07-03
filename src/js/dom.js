@@ -96,7 +96,40 @@
       });
 
       return result;
+    }
 
+    attr(attrName, attrValue) {
+
+      let result;
+
+      this.each(function (element) {
+        if(!attrValue) {
+          result = element.getAttribute(attrName)
+        }
+        else {
+          result = element.setAttribute(attrName, attrValue)
+        }
+      });
+
+      return result;
+    }
+
+    remove() {
+
+      this.each(function (element) {
+        element.remove();
+      });
+
+      return this;
+    }
+
+    on(eventType, callback) {
+
+      this.each(function(element) {
+        element.addEventListener(eventType, callback);
+      });
+
+      return this;
     }
   }
 
