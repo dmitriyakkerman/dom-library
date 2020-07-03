@@ -3,8 +3,8 @@
 Usage:      
  
     $d('div')                               => all DIV elements on the page
-    $d('#header')                            => element with id "header"
-    $d('.link')                              => all elements with className "link"          
+    $d('#header')                           => element with id "header"
+    $d('.link')                             => all elements with className "link"          
     $d('.box').html('<div>New one</div>');  => changing innerHTML of elements with className "box"  
     $d('.box').text('Some text');           => changing textContent of elements with className "box"     
     $d('.box').addClass('someClass');       => adding additional className to the elements with className "box"        
