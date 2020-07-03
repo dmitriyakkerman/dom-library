@@ -8,206 +8,101 @@
   }
 }(typeof self !== 'undefined' ? self : this, function () {
 
-  class DomElement {
+  class Dom {
     constructor(selector) {
-      this.selector = document.querySelectorAll(selector);
+      if (selector === 'document') {
+        this.selector = document.body;
+      }
+      else {
+        this.selector = document.querySelectorAll(selector);
+      }
+
       this.length = this.selector.length;
     }
 
-     html(html) {
-       this.selector.innerHTML = html;
+    each(callback) {
+      if (!callback || typeof callback !== 'function') {
+        return;
+      }
 
-       return this;
-     }
-
-     clear() {
-       this.html('');
-
-       return this;
-     }
-
-    text(text) {
-      this.selector.textContent = text;
+      this.selector.forEach(function(element, index) {
+        callback(element, index);
+      });
 
       return this;
     }
 
-     addClass(className) {
-       this.selector.classList.add(className);
-
-       return this;
-     }
-
-     removeClass(className) {
-       this.selector.classList.remove(className);
-
-       return this;
-     }
-
-     toggleClass(className) {
-       if (this.selector.classList.contains(className)) {
-         this.selector.classList.remove(className);
-       }
-       else {
-         this.selector.classList.add(className);
-       }
-
-       return this;
-     }
-
-     hasClass(className) {
-       if (this.selector.classList.contains(className)) {
-         return true;
-       }
-       else {
-         return false;
-       }
-
-       return this;
-     }
-
-     attr(attrName, attrValue) {
-       if (!attrValue) {
-         return this.selector.getAttribute('data-' + attrName);
-       }
-       else {
-         return this.selector.setAttribute('data-' + attrName, attrValue);
-       }
-
-       return this;
-     };
-
-     remove() {
-       this.selector.remove();
-
-       return this;
-     }
-
-     prepend(element) {
-       this.selector.prepend(element);
-
-       return this;
-     }
-
-     append(element) {
-       this.selector.append(element);
-
-       return this;
-     }
-
-     previous() {
-       return this.selector.previousElementSibling;
-     }
-
-     next() {
-       return this.selector.nextElementSibling;
-     }
-
-     parent() {
-       return this.selector.parentElement;
-     }
-
-     firstChild() {
-       return this.selector.firstElementChild;
-     }
-
-     lastChild() {
-       return this.selector.lastElementChild;
-     }
-
-     on(eventType, callback) {
-       this.selector.addEventListener(eventType, callback);
-     }
-  }
-
-  class DomMediator {
-    constructor(DomElement) {
-      this.DomElement = DomElement;
-      this.length = this.DomElement.length;
-    }
-
     html(html) {
-      this.DomElement.html(html);
-    }
 
-    clear() {
-      this.DomElement.html('');
+      this.each(function (element) {
+         element.innerHTML = html;
+       });
+
+       return this;
     }
 
     text(text) {
-      this.DomElement.text(text);
+
+      this.each(function (element) {
+        element.textContent = text;
+      });
+
+      return this;
     }
 
     addClass(className) {
-      this.DomElement.addClass(className);
+      
+      this.each(function (element) {
+        element.classList.add(className);
+      });
+
+      return this;
     }
 
     removeClass(className) {
-      this.DomElement.remove(className);
+
+      this.each(function (element) {
+        element.classList.remove(className);
+      });
+
+      return this;
     }
 
     toggleClass(className) {
-      this.DomElement.toggleClass(className);
+
+      this.each(function (element) {
+        if (element.classList.contains(className)) {
+          element.classList.remove(className);
+        }
+        else {
+          element.classList.add(className);
+        }
+      });
+
+      return this;
     }
 
     hasClass(className) {
-      this.DomElement.hasClass(className)
-    }
 
-    attr(attrName, attrValue) {
-      this.DomElement.attr(attrName, attrValue);
-    };
+      let result;
 
-    remove() {
-      this.DomElement.remove();
-    }
+      this.each(function (element) {
+        if(element.classList.contains(className)) {
+          result = true;
+        }
+        else {
+          result = false;
+        }
+      });
 
-    prepend(element) {
-      this.DomElement.prepend(element);
-    }
+      return result;
 
-    append(element) {
-      this.DomElement.append(element);
-    }
-
-    previous() {
-      this.DomElement.previous();
-    }
-
-    next() {
-      this.DomElement.next();
-    }
-
-    parent() {
-      this.DomElement.parent();
-    }
-
-    firstChild() {
-      this.DomElement.firstChild();
-    }
-
-    lastChild() {
-      this.DomElement.lastChild();
-    }
-
-    on(eventType, callback) {
-      this.DomElement.on(eventType, callback);
     }
   }
 
   function $d(selector) {
-    return new DomMediator(new DomElement(selector));
+    return new Dom(selector);
   }
-
-  $d.create = function (tagName, className) {
-    const element = document.createElement(tagName);
-
-    if (className) {
-      element.classList.add(className)
-    }
-
-    return element;
-  };
 
   window.$d = $d;
 
