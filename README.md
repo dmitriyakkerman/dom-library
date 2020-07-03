@@ -11,7 +11,10 @@ Usage:
     $d('.box').removeClass('someClass');    => removing className "someClass" from the elements with className "box"              
     $d('.box').toggleClass('someClass');    => toggling className "someClass" from/to the elements with className "box"
     $d('.box').hasClass('someClass');       => checking if element/elements with className "box" has/have additional className "someClass"
-    
+    $d('#element').attr('title')            => checking the value of "title" attribute
+    $d('#element').attr('title', 'first')   => settting the value to "title" attribute    
+    $d('.box').remove();                    => removing element/elements with className "box"
+    $d('box').on('click', function(){})     => adding eventListener to element/elements with className "box"
         
     Chaining
         
