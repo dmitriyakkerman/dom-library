@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/dmitriyakkerman/dom-util.svg?branch=master)](https://travis-ci.org/dmitriyakkerman/dom-util)
+[![Build Status](https://travis-ci.org/dmitriyakkerman/dom-library.svg?branch=master)](https://travis-ci.org/dmitriyakkerman/dom-library)
 
 Usage:      
  
