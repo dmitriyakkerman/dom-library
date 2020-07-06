@@ -146,7 +146,7 @@
       let result;
 
       this.each(function (element) {
-        result = element.querySelector(selector)
+        result = element.querySelectorAll(selector)
       });
 
       return result;
