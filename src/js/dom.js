@@ -117,7 +117,7 @@
     prepend(content) {
 
       this.each(function (element) {
-        element.insertAdjacentHTML("beforeBegin", content);
+        element.insertAdjacentHTML("afterBegin", content);
       });
 
       return this;
@@ -139,6 +139,17 @@
       });
 
       return this;
+    }
+
+    find(selector) {
+
+      let result;
+
+      this.each(function (element) {
+        result = element.querySelector(selector)
+      });
+
+      return result;
     }
 
     on(eventType, callback) {
