@@ -14,7 +14,7 @@
         this.selector = document.querySelectorAll("body");
       }
       else {
-        this.selector = document.querySelectorAll(selector);
+        this.selector = typeof selector === 'string' ? document.querySelectorAll(selector) : selector.selector;
       }
 
       this.length = this.selector.length;
