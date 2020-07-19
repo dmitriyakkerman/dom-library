@@ -13,6 +13,15 @@ describe('$d testing', () => {
     expect($d).toBeDefined();
   });
 
+  test('$d should accept DOM element', () => {
+    expect($d('.box')).toBeTruthy();
+  });
+
+  test('$d should be able to accept DOM element from variable', () => {
+    let elements = $d('.box');
+    expect($d(elements).length).not.toBeFalsy();
+  });
+
   test('Length of element with id should be equal 1', () => {
     expect($d('#someId').length).toBe(1);
   });
