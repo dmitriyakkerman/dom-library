@@ -41,6 +41,22 @@
       return this;
     }
 
+    css(property, value) {
+
+      this.each(function(element) {
+        if(typeof property === 'string') {
+          element.style[property] = value;
+        }
+        else if(typeof property === 'object') {
+          for(prop in property) {
+            element.style[prop] = property[prop]
+          }
+        }
+      });
+
+      return this;
+    }
+
     text(text) {
 
       this.each(function (element) {
