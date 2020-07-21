@@ -17,6 +17,7 @@ Usage:
     $d('#box').append('<div>Hi</div>')      => appending DIV element inside element with id "box"  
     $d('.box').remove();                    => removing element/elements with className "box"
     $d('box').on('click', function(){})     => adding eventListener to element/elements with className "box"
+    
         
     Chaining
         

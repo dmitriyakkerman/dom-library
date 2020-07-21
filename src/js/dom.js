@@ -41,6 +41,15 @@
       return this;
     }
 
+    text(text) {
+
+      this.each(function (element) {
+        element.textContent = text;
+      });
+
+      return this;
+    }
+
     css(property, value) {
 
       this.each(function(element) {
@@ -49,18 +58,11 @@
         }
         else if(typeof property === 'object') {
           for(prop in property) {
-            element.style[prop] = property[prop]
+            if(property.hasOwnProperty(prop)) {
+              element.style[prop] = property[prop]
+            }
           }
         }
-      });
-
-      return this;
-    }
-
-    text(text) {
-
-      this.each(function (element) {
-        element.textContent = text;
       });
 
       return this;
