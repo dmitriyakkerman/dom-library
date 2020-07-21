@@ -11,7 +11,7 @@ Usage:
     $d('.box').css({
         color: 'red', 
         border: 'solid #000 1px
-    });                                     => adding style property and value to the elements with className "box"
+    });                                     => adding multiple style properties and values to the elements with className "box"
     $d('.box').addClass('someClass');       => adding additional className to the elements with className "box"        
     $d('.box').removeClass('someClass');    => removing className "someClass" from the elements with className "box"              
     $d('.box').toggleClass('someClass');    => toggling className "someClass" from/to the elements with className "box"
