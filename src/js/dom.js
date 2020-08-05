@@ -126,7 +126,8 @@
           result = element.getAttribute(attrName)
         }
         else {
-          result = element.setAttribute(attrName, attrValue)
+          result = element.setAttribute(attrName, attrValue);
+          result = $d(element)
         }
       });
 
