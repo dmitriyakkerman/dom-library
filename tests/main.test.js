@@ -7,6 +7,7 @@ describe('$d testing', () => {
     <div class="box"></div>
     <div class="box"></div>
     <div class="element" title="some"></div>
+    <div class="parent"><span class="child"></span></div>
   `;
 
   test('$d should be defined', () => {
@@ -58,9 +59,13 @@ describe('$d testing', () => {
     expect($d('.element').attr('title')).toBe('newValue');
   });
 
-  test('Length of elements with class "element" should be equal 0 after removing', () => {
+  test('Length of elements with class "element" should equal 0 after removing', () => {
     $d('.element').remove();
     expect($d('.element').length).toBe(0);
+  });
+
+  test('Element with class "child" should have parent element with class "parent"', () => {
+    expect($d('.child').closest('.parent')).toBeTruthy();
   });
 
   test('New element should be defined after prepending to element with id "someId"', () => {
@@ -72,4 +77,5 @@ describe('$d testing', () => {
     let newElement = $d('#someId').append('<a href="">Link</a>');
     expect(newElement.find('a')).not.toBeNull();
   });
+
 })

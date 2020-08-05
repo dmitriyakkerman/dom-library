@@ -14,7 +14,8 @@
         this.selector = document.querySelectorAll("body");
       }
       else {
-        this.selector = typeof selector === 'string' ? document.querySelectorAll(selector) : selector.selector;
+        this.selector = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+
       }
 
       this.length = this.selector.length;
@@ -168,6 +169,17 @@
       });
 
       return result;
+    }
+
+    closest(selector) {
+
+      let closestElement;
+
+      this.each(function (element) {
+        closestElement = element.closest(selector)
+      })
+
+      return $d(closestElement)
     }
 
     on(eventType, callback) {
