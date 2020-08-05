@@ -18,6 +18,7 @@ Usage:
     $d('.box').hasClass('someClass');       => checking if element/elements with className "box" has/have additional className "someClass"
     $d('#element').attr('title')            => checking the value of "title" attribute
     $d('#element').attr('title', 'first')   => settting the value to "title" attribute  
+    $d('.parent').find('.child')            => finding element with className "child" inside element with className "parent"
     $d('.child').closest('.parent')         => checking if element with className "child" has parent with className "parent"
     $d('#box').prepend('<div>Hi</div>')     => prepending DIV element inside element with id "box"
     $d('#box').append('<div>Hi</div>')      => appending DIV element inside element with id "box"  

@@ -68,6 +68,10 @@ describe('$d testing', () => {
     expect($d('.child').closest('.parent')).toBeTruthy();
   });
 
+  test('Element with class "parent" should have child element with class "child"', () => {
+    expect($d('.parent').find('.child')).toBeTruthy();
+  });
+
   test('New element should be defined after prepending to element with id "someId"', () => {
     let newElement = $d('#someId').prepend('<div><button>Отправить</button></div>');
     expect(newElement.find('button')).not.toBeNull();

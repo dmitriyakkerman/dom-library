@@ -166,10 +166,10 @@
       let result;
 
       this.each(function (element) {
-        result = element.querySelectorAll(selector)
+        result = $d(element.querySelector(selector))
       });
 
-      return result;
+      return result
     }
 
     closest(selector) {
