@@ -166,10 +166,10 @@
       let result;
 
       this.each(function (element) {
-        result = $d(element.querySelector(selector))
+        result = element.querySelector(selector);
       });
 
-      return result
+      return $d(result)
     }
 
     closest(selector) {
@@ -183,10 +183,24 @@
       return $d(closestElement)
     }
 
-    on(eventType, callback) {
+    on(...params) {
 
       this.each(function (element) {
-        element.addEventListener(eventType, callback);
+
+        if(typeof params[1] === 'function') {
+          element.addEventListener(params[0], params[1]);
+        }
+        else if(typeof params[1] === 'string') {
+          element.addEventListener(params[0], function(event){
+            let childElements = element.querySelectorAll(params[1]);
+            childElements.forEach(function (childElement) {
+              if(event.target === childElement){
+                params[2].call(childElement, params[0]);
+              }
+            })
+          });
+        }
+
       });
 
       return this;
