@@ -15,7 +15,6 @@
       }
       else {
         this.selector = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
-
       }
 
       this.length = this.selector.length;
