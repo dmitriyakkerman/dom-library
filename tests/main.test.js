@@ -8,7 +8,19 @@ describe('$d testing', () => {
     <div class="box"></div>
     <div class="element" title="some"></div>
     <div class="parent"><span class="child"></span></div>
+    <div class="one"></div>
+    <div class="two"></div>
   `;
+
+  beforeEach(()=> {
+    let el;
+    let fn;
+  })
+
+  beforeEach(()=> {
+    let el;
+    let fn;
+  })
 
   test('$d should be defined', () => {
     expect($d).toBeDefined();
@@ -82,4 +94,13 @@ describe('$d testing', () => {
     expect(newElement.find('a')).not.toBeNull();
   });
 
-})
+  test('Element with class "two" should have previous element sibling with class "one"', () => {
+    let previousElement = $d('.two').prev();
+    expect(previousElement.hasClass('one')).toBeTruthy();
+  });
+
+  test('Element with class "one" should have next element sibling with class "two"', () => {
+    let nextElement = $d('.one').next();
+    expect(nextElement.hasClass('two')).toBeTruthy();
+  });
+});

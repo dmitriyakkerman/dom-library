@@ -183,6 +183,28 @@
       return $d(closestElement)
     }
 
+    prev() {
+
+      let previousElement;
+
+      this.each(function (element) {
+        previousElement = element.previousElementSibling;
+      })
+
+      return $d(previousElement)
+    }
+
+    next() {
+
+      let nextElement;
+
+      this.each(function (element) {
+        nextElement = element.nextElementSibling;
+      })
+
+      return $d(nextElement)
+    }
+
     on(...params) {
 
       this.each(function (element) {
