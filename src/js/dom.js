@@ -10,6 +10,7 @@
 
   class Dom {
     constructor(selector) {
+
       if (selector === 'window' || selector === 'document' || selector === 'body') {
         this.selector = document.querySelectorAll("body");
       }

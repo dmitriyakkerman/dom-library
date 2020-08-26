@@ -12,16 +12,6 @@ describe('$d testing', () => {
     <div class="two"></div>
   `;
 
-  beforeEach(()=> {
-    let el;
-    let fn;
-  })
-
-  beforeEach(()=> {
-    let el;
-    let fn;
-  })
-
   test('$d should be defined', () => {
     expect($d).toBeDefined();
   });
@@ -35,7 +25,7 @@ describe('$d testing', () => {
     expect($d(elements).length).not.toBeFalsy();
   });
 
-  test('Length of element with id should be equal 1', () => {
+  test('Length of element with id should equal 1', () => {
     expect($d('#someId').length).toBe(1);
   });
 
@@ -103,4 +93,5 @@ describe('$d testing', () => {
     let nextElement = $d('.one').next();
     expect(nextElement.hasClass('two')).toBeTruthy();
   });
+
 });
