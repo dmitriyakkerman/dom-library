@@ -11,28 +11,54 @@
   class Dom {
 
     constructor(selector) {
-      this.selector = this.getSelectorFromCache(selector);
+      this.selector = this.getSelector(selector);
       this.length = this.selector.length;
     }
 
-    getSelectorFromCache(selector) {
+    getSelector(selector) {
 
+      let $s;
       let that = this;
 
       if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
-        that.queryOperations(selector, Dom.cached);
+        $s = that.queryOperations(selector);
+        that.constructor.saveToCache(selector)
+      }
+      else {
+        $s = that.queryOperations(selector, Dom.cached);
       }
 
-      return Dom.cached[selector];
+      return $s;
     }
 
     queryOperations(selector, cacheObject) {
-      if (selector === 'window' || selector === 'document' || selector === 'body') {
-        cacheObject[selector] = document.querySelectorAll("body");
+
+      let result;
+
+      if(typeof cacheObject === 'undefined') {
+        if (selector === 'window' || selector === 'document' || selector === 'body') {
+          result = document.querySelectorAll("body");
+        }
+        else {
+          result = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+        }
       }
       else {
-        cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+        if (selector === 'window' || selector === 'document' || selector === 'body') {
+          cacheObject[selector] = document.querySelectorAll("body");
+          result = cacheObject[selector];
+        }
+        else {
+          cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+          result = cacheObject[selector];
+        }
       }
+
+      return result
+    }
+
+    static saveToCache(selector) {
+      Dom.cached[selector] = selector;
     }
 
     static clearCache() {
@@ -254,6 +280,7 @@
   }
 
   Dom.cached = {};
+  console.log(Dom.cached)
   window.$d = $d;
 
   return $d;
