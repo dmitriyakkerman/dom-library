@@ -17,8 +17,8 @@
 
     getSelector(selector) {
 
-      let $s;
       let that = this;
+      let $s;
 
       if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
         $s = that.constructor.queryOperations(selector);
