@@ -17,24 +17,26 @@
 
     getSelectorFromCache(selector) {
 
+      let that = this;
+
       if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
-        this.constructor.queryOperations(selector, Dom.cached);
+        that.queryOperations(selector, Dom.cached);
       }
 
       return Dom.cached[selector];
     }
 
-    clearCache() {
-      Dom.cached = {};
-    }
-
-    static queryOperations(selector, cacheObject) {
+    queryOperations(selector, cacheObject) {
       if (selector === 'window' || selector === 'document' || selector === 'body') {
         cacheObject[selector] = document.querySelectorAll("body");
       }
       else {
         cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
       }
+    }
+
+    static clearCache() {
+      Dom.cached = {};
     }
 
     each(callback) {
@@ -174,7 +176,7 @@
         element.remove();
       });
 
-      this.clearCache();
+      this.constructor.clearCache();
 
       return this;
     }
