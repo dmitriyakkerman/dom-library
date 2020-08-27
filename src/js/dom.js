@@ -9,16 +9,32 @@
 }(typeof self !== 'undefined' ? self : this, function () {
 
   class Dom {
-    constructor(selector) {
 
+    constructor(selector) {
+      this.selector = this.getSelectorFromCache(selector);
+      this.length = this.selector.length;
+    }
+
+    getSelectorFromCache(selector) {
+
+      if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
+        this.constructor.queryOperations(selector, Dom.cached);
+      }
+
+      return Dom.cached[selector];
+    }
+
+    clearCache() {
+      Dom.cached = {};
+    }
+
+    static queryOperations(selector, cacheObject) {
       if (selector === 'window' || selector === 'document' || selector === 'body') {
-        this.selector = document.querySelectorAll("body");
+        cacheObject[selector] = document.querySelectorAll("body");
       }
       else {
-        this.selector = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+        cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
       }
-
-      this.length = this.selector.length;
     }
 
     each(callback) {
@@ -58,7 +74,7 @@
           element.style[property] = value;
         }
         else if(typeof property === 'object') {
-          for(prop in property) {
+          for(let prop in property) {
             if(property.hasOwnProperty(prop)) {
               element.style[prop] = property[prop]
             }
@@ -158,6 +174,8 @@
         element.remove();
       });
 
+      this.clearCache();
+
       return this;
     }
 
@@ -233,6 +251,7 @@
     return new Dom(selector);
   }
 
+  Dom.cached = {};
   window.$d = $d;
 
   return $d;
