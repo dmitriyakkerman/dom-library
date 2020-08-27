@@ -36,6 +36,7 @@
       let result;
 
       if(typeof cacheObject === 'undefined') {
+
         if (selector === 'window' || selector === 'document' || selector === 'body') {
           result = document.querySelectorAll("body");
         }
@@ -52,6 +53,7 @@
           cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
           result = cacheObject[selector];
         }
+
       }
 
       return result
