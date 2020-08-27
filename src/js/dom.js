@@ -21,17 +21,17 @@
       let that = this;
 
       if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
-        $s = that.queryOperations(selector);
+        $s = that.constructor.queryOperations(selector);
         that.constructor.saveToCache(selector)
       }
       else {
-        $s = that.queryOperations(selector, Dom.cached);
+        $s = that.constructor.queryOperations(selector, Dom.cached);
       }
 
       return $s;
     }
 
-    queryOperations(selector, cacheObject) {
+    static queryOperations(selector, cacheObject) {
 
       let result;
 
@@ -280,7 +280,6 @@
   }
 
   Dom.cached = {};
-  console.log(Dom.cached)
   window.$d = $d;
 
   return $d;
