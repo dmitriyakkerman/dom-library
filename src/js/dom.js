@@ -253,6 +253,39 @@
       return $d(nextElement)
     }
 
+    parent() {
+
+      let parent;
+
+      this.each(function (element) {
+        parent = element.parentElement;
+      })
+
+      return $d(parent)
+    }
+
+    first() {
+
+      let firstChild;
+
+      this.each(function(element) {
+        firstChild = element.firstElementChild
+      })
+
+      return $d(firstChild)
+    }
+
+    last() {
+
+      let lastChild;
+
+      this.each(function(element) {
+        lastChild = element.lastElementChild
+      })
+
+      return $d(lastChild)
+    }
+
     on(...params) {
 
       this.each(function (element) {

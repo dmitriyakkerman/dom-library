@@ -10,6 +10,10 @@ describe('$d testing', () => {
     <div class="parent"><span class="child"></span></div>
     <div class="one"></div>
     <div class="two"></div>
+    <div class="linkParent">
+        <a href="" class="link1"></a>
+        <a href="" class="link2"></a>
+    </div>
   `;
 
   test('$d should be defined', () => {
@@ -92,6 +96,21 @@ describe('$d testing', () => {
   test('Element with class "one" should have next element sibling with class "two"', () => {
     let nextElement = $d('.one').next();
     expect(nextElement.hasClass('two')).toBeTruthy();
+  });
+
+  test('Element with class "link" should have parent element with class "linkParent"', () => {
+    let linkParent = $d('.link1').parent();
+    expect(linkParent.hasClass('linkParent')).toBeTruthy();
+  });
+
+  test('Element with class "linkParent" should have first child element with class "link1"', () => {
+    let firstChild = $d('.linkParent').first();
+    expect(firstChild.hasClass('link1')).toBeTruthy();
+  });
+
+  test('Element with class "linkParent" should have last child element with class "link2"', () => {
+    let lastChild = $d('.linkParent').last();
+    expect(lastChild.hasClass('link2')).toBeTruthy();
   });
 
 });
