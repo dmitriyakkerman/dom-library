@@ -1,0 +1,23 @@
+export interface DomInterface {
+    selector: any,
+    length: number,
+    html: Function,
+    text: Function,
+    css: Function,
+    addClass: Function,
+    removeClass: Function,
+    toggleClass: Function,
+    hasClass: Function,
+    attr: Function,
+    prepend: Function,
+    append: Function,
+    remove: Function,
+    find: Function,
+    closest: Function,
+    prev: Function,
+    next: Function,
+    parent: Function,
+    first: Function,
+    last: Function,
+    on: Function
+}
