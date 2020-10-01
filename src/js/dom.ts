@@ -274,9 +274,7 @@ declare let window: windowDomInterface;
         }
 
         public on(...params) :object {
-
             this.each(function (element:Element) {
-
                 if(typeof params[1] === 'function') {
                     element.addEventListener(params[0], params[1]);
                 }
@@ -290,7 +288,6 @@ declare let window: windowDomInterface;
                         })
                     });
                 }
-
             });
 
             return this;
