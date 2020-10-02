@@ -16,7 +16,7 @@ declare let window: windowDomInterface;
     class Dom implements DomInterface {
         public selector: any;
         public length: number;
-        static cached: object;
+        static cached: any;
 
         constructor(selector: any) {
             this.selector = this.getSelector(selector);
@@ -38,7 +38,7 @@ declare let window: windowDomInterface;
             return $s;
         }
 
-        static queryOperations(selector:string, cacheObject:object = {}) :Element {
+        static queryOperations(selector:string, cacheObject:any = {}) :Element {
             let result;
 
             if(typeof cacheObject === 'undefined') {
@@ -73,10 +73,6 @@ declare let window: windowDomInterface;
         }
 
         private each(callback:Function) :object {
-            if (!callback || typeof callback !== 'function') {
-                return;
-            }
-
             this.selector.forEach(function (element:Element) {
                 callback(element);
             });
@@ -133,7 +129,7 @@ declare let window: windowDomInterface;
             return this;
         }
 
-        public toggleClass(className) :object {
+        public toggleClass(className:string) :object {
             this.each(function (element:Element) {
                 if (element.classList.contains(className)) {
                     element.classList.remove(className);
@@ -146,7 +142,7 @@ declare let window: windowDomInterface;
             return this;
         }
 
-        public hasClass(className) :boolean {
+        public hasClass(className:string) :boolean {
             let result;
 
             this.each(function (element:Element) {
