@@ -96,8 +96,8 @@ declare let window: windowDomInterface;
             return this;
         }
 
-        public css(property: string | object, value:string) :object {
-            this.each(function(element:HTMLElement) {
+        public css(property: any, value:string) :object {
+            this.each(function(element:any) {
                 if(typeof property === 'string') {
                     element.style[property] = value;
                 }
@@ -143,7 +143,7 @@ declare let window: windowDomInterface;
         }
 
         public hasClass(className:string) :boolean {
-            let result;
+            let result: any;
 
             this.each(function (element:Element) {
                 if (element.classList.contains(className)) {
@@ -157,8 +157,8 @@ declare let window: windowDomInterface;
             return result;
         }
 
-        public attr(attrName, attrValue) :string | object {
-            let result;
+        public attr(attrName:string, attrValue:string) :string | object {
+            let result: any;
 
             this.each(function (element:Element) {
                 if (!attrValue) {
@@ -269,7 +269,7 @@ declare let window: windowDomInterface;
             return $d(lastChild)
         }
 
-        public on(...params) :object {
+        public on(...params:Array<any>) :object {
             this.each(function (element:Element) {
                 if(typeof params[1] === 'function') {
                     element.addEventListener(params[0], params[1]);
