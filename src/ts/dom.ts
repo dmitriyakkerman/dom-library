@@ -175,7 +175,7 @@ declare let window: windowDomInterface;
 
         public prepend(content:string) :object {
             this.each(function (element:Element) {
-                element.insertAdjacentHTML("afterBegin", content);
+                element.insertAdjacentHTML(<"beforebegin" | "afterbegin" | "beforeend" | "afterend">"afterBegin", content);
             });
 
             return this;
@@ -183,7 +183,7 @@ declare let window: windowDomInterface;
 
         public append(content:string) :object {
             this.each(function (element:Element) {
-                element.insertAdjacentHTML("beforeEnd", content);
+                element.insertAdjacentHTML(<"beforebegin" | "afterbegin" | "beforeend" | "afterend">"beforeEnd", content);
             });
 
             return this;
