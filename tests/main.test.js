@@ -37,6 +37,13 @@ describe('$d testing', () => {
     expect($d('.box').length).toBe(2);
   });
 
+  test('Method each should be called 2 times', () => {
+    let cb = jest.fn();
+    $d('.box').each(cb);
+    expect(cb).toHaveBeenCalled();
+    expect(cb).toBeCalledTimes(2);
+  });
+
   test('Element with id "someId" should not have class "someClass"', () => {
     expect($d('#someId').hasClass('someClass')).toBeFalsy();
   });
