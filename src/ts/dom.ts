@@ -19,11 +19,11 @@ declare let window: windowDomInterface;
         static cached: any;
 
         constructor(selector: any) {
-            this.selector = this.getSelector(selector);
+            this.selector = this.getSelector(selector as string);
             this.length = this.selector.length;
         }
 
-        private getSelector(selector:string) :object {
+        private getSelector(selector:string) :Element {
             let that = this;
             let $s;
 
@@ -99,12 +99,12 @@ declare let window: windowDomInterface;
         public css(property: any, value:string) :object {
             this.each(function(element:any) {
                 if(typeof property === 'string') {
-                    element.style[property] = value;
+                    element.style[property as string] = value;
                 }
                 else if(typeof property === 'object') {
                     for(let prop in property) {
                         if(property.hasOwnProperty(prop)) {
-                            element.style[prop] = property[prop]
+                            element.style[prop] = property[prop as string]
                         }
                     }
                 }
@@ -143,7 +143,7 @@ declare let window: windowDomInterface;
         }
 
         public hasClass(className:string) :boolean {
-            let result: any;
+            let result: boolean;
 
             this.each(function (element:Element) {
                 if (element.classList.contains(className)) {
@@ -154,19 +154,19 @@ declare let window: windowDomInterface;
                 }
             });
 
-            return result;
+            return result!;
         }
 
-        public attr(attrName:string, attrValue:string) :string | object {
+        public attr(attrName:string, attrValue?:string) :string | object {
             let result: any;
 
             this.each(function (element:Element) {
                 if (!attrValue) {
-                    result = element.getAttribute(attrName)
+                    result = element.getAttribute(attrName) as string;
                 }
                 else {
                     result = element.setAttribute(attrName, attrValue);
-                    result = $d(element)
+                    result = $d(element) as object;
                 }
             });
 
