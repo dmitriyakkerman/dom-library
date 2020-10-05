@@ -19,12 +19,12 @@ declare let window: windowDomInterface;
         public length: number;
         static cached: any;
 
-        constructor(selector: any) {
-            this.selector = this.getSelector(selector as string);
+        constructor(selector: string) {
+            this.selector = (this.getSelector(selector as string) as HTMLElement);
             this.length = this.selector.length;
         }
 
-        private getSelector(selector:string) :Element {
+        private getSelector(selector:string): HTMLElement {
             let that = this;
             let $s;
 
@@ -39,7 +39,7 @@ declare let window: windowDomInterface;
             return $s;
         }
 
-        static queryOperations(selector:string, cacheObject:any = {}) :HTMLElement {
+        static queryOperations(selector: string, cacheObject: any = {}): HTMLElement {
             let result;
 
             if(typeof cacheObject === 'undefined') {
@@ -65,40 +65,40 @@ declare let window: windowDomInterface;
             return result
         }
 
-        static saveToCache(selector:string) :void {
+        static saveToCache(selector: string): void {
             Dom.cached[selector] = selector;
         }
 
-        static clearCache() :void {
+        static clearCache(): void {
             Dom.cached = {};
         }
 
-        private each(callback:Function) :object {
-            this.selector.forEach(function (element:Element) {
+        private each(callback:Function): object {
+            this.selector.forEach(function(element: Element) {
                 callback(element);
             });
 
             return this;
         }
 
-        public html(html:string) :object {
-            this.each(function (element:Element) {
+        public html(html: string): object {
+            this.each(function(element: Element) {
                 element.innerHTML = html;
             });
 
             return this;
         }
 
-        public text(text:string) :object {
-            this.each(function (element:Element) {
+        public text(text: string): object {
+            this.each(function(element: Element) {
                 element.textContent = text;
             });
 
             return this;
         }
 
-        public css(property: any, value:string) :object {
-            this.each(function(element:any) {
+        public css(property: any, value: string): object {
+            this.each(function(element: any) {
                 if(typeof property === 'string') {
                     element.style[property as string] = value;
                 }
@@ -114,24 +114,24 @@ declare let window: windowDomInterface;
             return this;
         }
 
-        public addClass(className:string) :object {
-            this.each(function (element:Element) {
+        public addClass(className: string): object {
+            this.each(function(element: Element) {
                 element.classList.add(className);
             });
 
             return this;
         }
 
-        public removeClass(className:string) :object {
-            this.each(function (element:Element) {
+        public removeClass(className: string): object {
+            this.each(function(element: Element) {
                 element.classList.remove(className);
             });
 
             return this;
         }
 
-        public toggleClass(className:string) :object {
-            this.each(function (element:Element) {
+        public toggleClass(className: string): object {
+            this.each(function(element: Element) {
                 if (element.classList.contains(className)) {
                     element.classList.remove(className);
                 }
@@ -143,10 +143,10 @@ declare let window: windowDomInterface;
             return this;
         }
 
-        public hasClass(className:string) :boolean {
+        public hasClass(className: string): boolean {
             let result: boolean;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 if (element.classList.contains(className)) {
                     result = true;
                 }
@@ -158,10 +158,10 @@ declare let window: windowDomInterface;
             return result!;
         }
 
-        public attr(attrName:string, attrValue?:string) :string | object {
+        public attr(attrName: string, attrValue?: string): string | object {
             let result: any;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 if (!attrValue) {
                     result = element.getAttribute(attrName) as string;
                 }
@@ -174,24 +174,24 @@ declare let window: windowDomInterface;
             return result;
         }
 
-        public prepend(content:string) :object {
-            this.each(function (element:Element) {
+        public prepend(content: string): object {
+            this.each(function(element: Element) {
                 element.insertAdjacentHTML(<"beforebegin" | "afterbegin" | "beforeend" | "afterend">"afterBegin", content);
             });
 
             return this;
         }
 
-        public append(content:string) :object {
-            this.each(function (element:Element) {
+        public append(content: string): object {
+            this.each(function(element: Element) {
                 element.insertAdjacentHTML(<"beforebegin" | "afterbegin" | "beforeend" | "afterend">"beforeEnd", content);
             });
 
             return this;
         }
 
-        public remove() :object {
-            this.each(function (element:Element) {
+        public remove(): object {
+            this.each(function(element: Element) {
                 element.remove();
             });
 
@@ -200,85 +200,85 @@ declare let window: windowDomInterface;
             return this;
         }
 
-        public find(selector:string) :object {
+        public find(selector: string): object {
             let result;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 result = element.querySelector(selector);
             });
 
             return $d(result)
         }
 
-        public closest(selector:string) :object {
+        public closest(selector: string): object {
             let closestElement;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 closestElement = element.closest(selector)
             });
 
             return $d(closestElement)
         }
 
-        public prev() :object {
+        public prev(): object {
             let previousElement;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 previousElement = element.previousElementSibling;
             });
 
             return $d(previousElement)
         }
 
-        public next() :object {
+        public next(): object {
             let nextElement;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 nextElement = element.nextElementSibling;
             });
 
             return $d(nextElement)
         }
 
-        public parent() :object {
+        public parent(): object {
             let parent;
 
-            this.each(function (element:Element) {
+            this.each(function(element: Element) {
                 parent = element.parentElement;
             });
 
             return $d(parent)
         }
 
-        public first() :object {
+        public first(): object {
             let firstChild;
 
-            this.each(function(element:Element) {
+            this.each(function(element: Element) {
                 firstChild = element.firstElementChild
             });
 
             return $d(firstChild)
         }
 
-        public last() :object {
+        public last(): object {
             let lastChild;
 
-            this.each(function(element:Element) {
+            this.each(function(element: Element) {
                 lastChild = element.lastElementChild
             });
 
             return $d(lastChild)
         }
 
-        public on(...params:Array<any>) :object {
-            this.each(function (element:Element) {
+        public on(...params:Array<any>): object {
+            this.each(function(element: Element) {
                 if(typeof params[1] === 'function') {
                     element.addEventListener(params[0], params[1]);
                 }
                 else if(typeof params[1] === 'string') {
-                    element.addEventListener(params[0], function(event:Event){
+                    element.addEventListener(params[0], function(event: Event){
                         let childElements = element.querySelectorAll(params[1]);
-                        childElements.forEach(function (childElement) {
+                        childElements.forEach(function(childElement) {
                             if(event.target === childElement){
                                 params[2].call(childElement, params[0]);
                             }
@@ -291,7 +291,7 @@ declare let window: windowDomInterface;
         }
     }
 
-    function $d(selector:any) :object {
+    function $d(selector: any): object {
         return new Dom(selector);
     }
 
