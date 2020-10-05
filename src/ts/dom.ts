@@ -1,4 +1,5 @@
 import {windowDomInterface} from "./interfaces/windowDomInterface";
+import {define} from "./globals/globals";
 import {DomInterface} from "./interfaces/DomInterface";
 
 declare let window: windowDomInterface;
