@@ -39,25 +39,25 @@ declare let window: windowDomInterface;
             return $s;
         }
 
-        static queryOperations(selector:string, cacheObject:any = {}) :Element {
+        static queryOperations(selector:string, cacheObject:any = {}) :HTMLElement {
             let result;
 
             if(typeof cacheObject === 'undefined') {
 
                 if (selector === 'window' || selector === 'document' || selector === 'body') {
-                    result = document.querySelectorAll("body");
+                    result = document.querySelectorAll("body") as NodeListOf<HTMLElement>;
                 }
                 else {
-                    result = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+                    result = (typeof selector === 'string' ? document.querySelectorAll(selector) : [selector]) as NodeListOf<HTMLElement>;
                 }
             }
             else {
                 if (selector === 'window' || selector === 'document' || selector === 'body') {
-                    cacheObject[selector] = document.querySelectorAll("body");
+                    cacheObject[selector] = document.querySelectorAll("body") as NodeListOf<HTMLElement>;
                     result = cacheObject[selector];
                 }
                 else {
-                    cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+                    cacheObject[selector] = (typeof selector === 'string' ? document.querySelectorAll(selector) : [selector]) as NodeListOf<HTMLElement>;
                     result = cacheObject[selector];
                 }
             }

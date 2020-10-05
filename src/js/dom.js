@@ -36,7 +36,7 @@ const globals_1 = require("./globals/globals");
                     result = document.querySelectorAll("body");
                 }
                 else {
-                    result = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+                    result = (typeof selector === 'string' ? document.querySelectorAll(selector) : [selector]);
                 }
             }
             else {
@@ -45,7 +45,7 @@ const globals_1 = require("./globals/globals");
                     result = cacheObject[selector];
                 }
                 else {
-                    cacheObject[selector] = typeof selector === 'string' ? document.querySelectorAll(selector) : [selector];
+                    cacheObject[selector] = (typeof selector === 'string' ? document.querySelectorAll(selector) : [selector]);
                     result = cacheObject[selector];
                 }
             }
