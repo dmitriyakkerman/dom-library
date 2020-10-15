@@ -20,8 +20,8 @@ declare let window: windowDomInterface;
         static cached: any;
 
         constructor(selector: string) {
-            this.selector = (this.getSelector(selector as string) as HTMLElement);
-            this.length = this.selector.length;
+            this.selector = this.getSelector(selector as string) as HTMLElement;
+            this.length = this.selector.length as number;
         }
 
         private getSelector(selector:string): HTMLElement {
@@ -45,7 +45,7 @@ declare let window: windowDomInterface;
             if(typeof cacheObject === 'undefined') {
 
                 if (selector === 'window' || selector === 'document' || selector === 'body') {
-                    result = document.querySelectorAll("body") as NodeListOf<HTMLElement>;
+                    result = document.querySelectorAll("body");
                 }
                 else {
                     result = (typeof selector === 'string' ? document.querySelectorAll(selector) : [selector]) as NodeListOf<HTMLElement>;
@@ -147,12 +147,7 @@ declare let window: windowDomInterface;
             let result: boolean;
 
             this.each(function(element: Element) {
-                if (element.classList.contains(className)) {
-                    result = true;
-                }
-                else {
-                    result = false;
-                }
+                result = element.classList.contains(className);
             });
 
             return result!;

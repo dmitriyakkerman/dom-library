@@ -116,12 +116,7 @@ const globals_1 = require("./globals/globals");
         hasClass(className) {
             let result;
             this.each(function (element) {
-                if (element.classList.contains(className)) {
-                    result = true;
-                }
-                else {
-                    result = false;
-                }
+                result = element.classList.contains(className);
             });
             return result;
         }
