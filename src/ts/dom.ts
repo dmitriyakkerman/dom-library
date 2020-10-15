@@ -265,17 +265,17 @@ declare let window: windowDomInterface;
             return $d(lastChild)
         }
 
-        public on(...params:Array<any>): object {
+        public on(...params:[string, any, Function]): object {
             this.each(function(element: Element) {
                 if(typeof params[1] === 'function') {
-                    element.addEventListener(params[0], params[1]);
+                    element.addEventListener(params[0] as string, params[1] as EventListener);
                 }
                 else if(typeof params[1] === 'string') {
-                    element.addEventListener(params[0], function(event: Event){
-                        let childElements = element.querySelectorAll(params[1]);
+                    element.addEventListener(params[0] as string, function(event: Event){
+                        let childElements = element.querySelectorAll(params[1] as string);
                         childElements.forEach(function(childElement) {
                             if(event.target === childElement){
-                                params[2].call(childElement, params[0]);
+                                <EventListener>params[2].call(childElement, params[0] as string);
                             }
                         })
                     });
