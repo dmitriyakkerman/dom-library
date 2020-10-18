@@ -286,15 +286,18 @@ declare let window: windowDomInterface;
         }
     }
 
-    function $d(...params: Array<any>) {
+    function $d(...params: Array<any>): object {
+        let instance: object;
         if(typeof params[0] === "function") {
-            params[0](document.addEventListener('DOMContentLoaded', function() {
+            instance = params[0](document.addEventListener('DOMContentLoaded', function() {
                 return new Dom(params[1]);
             }))
         }
         else {
-            return new Dom(params[0]);
+            instance = new Dom(params[0]);
         }
+
+        return instance;
     }
 
     Dom.cached = {};
