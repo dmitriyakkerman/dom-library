@@ -220,8 +220,17 @@ const globals_1 = require("./globals/globals");
             return this;
         }
     }
-    function $d(selector) {
-        return new Dom(selector);
+    function $d(...params) {
+        let instance;
+        if (typeof params[0] === "function") {
+            instance = params[0](document.addEventListener('DOMContentLoaded', function () {
+                return new Dom(params[1]);
+            }));
+        }
+        else {
+            instance = new Dom(params[0]);
+        }
+        return instance;
     }
     Dom.cached = {};
     window.$d = $d;

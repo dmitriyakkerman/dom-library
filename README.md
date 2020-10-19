@@ -30,6 +30,9 @@ Usage:
     $d('.box').remove();                        => removing element/elements with className "box"
     $d('.box').on('click', function(){})        => adding eventListener to the elements with className "box"
     $d('.box').on('click', 'a', function(){})   => adding eventListener to 'a' tags inside the elements with className "box"
+    $d(function(){                              => adding className to element on DOMContentLoaded event
+      $d('.box').addClass('someClass');
+    }    
         
     Chaining
         

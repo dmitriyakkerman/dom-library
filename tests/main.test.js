@@ -14,6 +14,7 @@ describe('$d testing', () => {
         <a href="" class="link1"></a>
         <a href="" class="link2"></a>
     </div>
+    <div class="block"></div>
   `;
 
   test('$d should be defined', () => {
@@ -119,5 +120,12 @@ describe('$d testing', () => {
     let lastChild = $d('.linkParent').last();
     expect(lastChild.hasClass('link2')).toBeTruthy();
   });
+
+  test('$d should have DOMContentLoaded method', () => {
+    $d(function () {
+      $d('.block').addClass('important-class');
+    });
+    expect($d('.block').hasClass('important-class')).toBeTruthy();
+  })
 
 });
