@@ -15,20 +15,20 @@ declare let window: windowDomInterface;
 }(typeof self !== 'undefined' ? self : this, function () {
 
     class Dom implements DomInterface {
-        public selector: any;
+        public selector: NodeListOf<HTMLElement>;
         public length: number;
         static cached: any;
 
         constructor(selector: string) {
-            this.selector = this.getSelector(selector as string) as HTMLElement;
+            this.selector = this.getSelector(selector as string);
             this.length = this.selector.length as number;
         }
 
-        private getSelector(selector:string): HTMLElement {
+        private getSelector(selector:string): NodeListOf<HTMLElement> {
             let that = this;
             let $s;
 
-            if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
+            if ((Dom.cached[selector as string] as object) === undefined || Object.values(Dom.cached as object).indexOf(selector) <= 0) {
                 $s = Dom.queryOperations(selector);
                 Dom.saveToCache(selector)
             }
@@ -39,7 +39,7 @@ declare let window: windowDomInterface;
             return $s;
         }
 
-        static queryOperations(selector: string, cacheObject: any = {}): HTMLElement {
+        static queryOperations(selector: string, cacheObject: any = {}): NodeListOf<HTMLElement> {
             let result;
 
             if(typeof cacheObject === 'undefined') {
