@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/dmitriyakkerman/dom-library.svg?branch=master)](https://travis-ci.org/dmitriyakkerman/dom-library)
-[![Coverage Status](https://coveralls.io/repos/github/dmitriyakkerman/dom-library/badge.svg?branch=master)](https://coveralls.io/github/dmitriyakkerman/dom-library?branch=master)
 [![TypeScript](https://badges.frapsoft.com/typescript/love/typescript.svg?v=101)](https://github.com/ellerbrock/typescript-badges/)
 
 Usage:      
