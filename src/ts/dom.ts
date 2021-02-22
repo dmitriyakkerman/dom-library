@@ -10,7 +10,7 @@ declare let window: windowDomInterface;
     } else if (typeof module === 'object' && module.exports) {
         module.exports = factory();
     } else {
-        root.$d = factory();
+        root!.$d = factory();
     }
 }(typeof self !== 'undefined' ? self : this, function () {
 
@@ -20,12 +20,11 @@ declare let window: windowDomInterface;
         static cached: any;
 
         constructor(selector: string) {
-            this.selector = this.getSelector(selector as string);
+            this.selector = Dom.getSelector(selector as string);
             this.length = this.selector.length as number;
         }
 
-        private getSelector(selector:string): NodeListOf<HTMLElement> {
-            let that = this;
+        static getSelector(selector:string): NodeListOf<HTMLElement> {
             let $s;
 
             if ((Dom.cached[selector as string] as object) === undefined || Object.values(Dom.cached as object).indexOf(selector) <= 0) {

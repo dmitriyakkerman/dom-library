@@ -14,11 +14,10 @@ const globals_1 = require("./globals/globals");
 }(typeof self !== 'undefined' ? self : this, function () {
     class Dom {
         constructor(selector) {
-            this.selector = this.getSelector(selector);
+            this.selector = Dom.getSelector(selector);
             this.length = this.selector.length;
         }
-        getSelector(selector) {
-            let that = this;
+        static getSelector(selector) {
             let $s;
             if (Dom.cached[selector] === undefined || Object.values(Dom.cached).indexOf(selector) <= 0) {
                 $s = Dom.queryOperations(selector);
