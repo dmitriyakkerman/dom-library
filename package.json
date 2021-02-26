@@ -10,6 +10,7 @@
   },
   "author": "Dmitriy Akkerman",
   "license": "ISC",
+  "keywords": ["DOM", "library", "DOM manipulation"],
   "repository": {
     "type": "git",
     "url": "https://github.com/dmitriyakkerman/dom-util.git"
